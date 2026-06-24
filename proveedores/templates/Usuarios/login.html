@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/menu.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Proyecto Doccy</title>
+</head>
+
+<body>
+    <h1>Bienvenidos al Proyecto Python</h1>
+    <div class="container" id="container">
+        <div class="form-container sign-up-container">
+            <form action="/User/registro" method="POST">
+                {% csrf_token %}
+                <h1>Crear Cuenta</h1>
+                <span>o usa tu email para registrarte</span>
+                <input type="text" placeholder="Nombre" name="usu" required />
+                <input type="email" placeholder="Email" name="email" required />
+                <input type="password" placeholder="Contraseña" name="pass" required />
+                <button>Registrarse</button>
+            </form>
+        </div>
+        <div class="form-container sign-in-container">
+            <form action="/User/login" method="POST">
+                {% csrf_token %}
+                <h1>Iniciar Sesión</h1>
+                <span>o usa tu cuenta</span>
+                <input type="text" placeholder="Usuario" name="usu" required />
+                <input type="password" placeholder="Contraseña" name="pass" required />
+                <a href="#">Olvidaste tu contraseña?</a>
+                <button>Ingresar</button>
+                {% if mensajeerror %}
+                <p style="color:red">{{ mensajeerror }}</p>
+                {% endif %}
+            </form>
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Bienvenido de nuevo!</h1>
+                    <p>Para mantenerte conectado con nosotros, inicia sesión con tu información personal</p>
+                    <button class="ghost" id="signIn">Iniciar Sesión</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>Hola, Amigo!</h1>
+                    <p>Introduce tus datos personales y comienza tu viaje con nosotros</p>
+                    <button class="ghost" id="signUp">Registrarse</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="{% static 'js/jspdf.umd.min.js' %}"></script>
+    <script src="{% static 'js/menu.js' %}"></script>
+    <script src="{% static 'js/sweetalert2@11.js' %}"></script>
+</body>
+
+</html>
